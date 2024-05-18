@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for(int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    BossHealth bossHealth = enemiesToDamage[i].GetComponent<BossHealth>();
+                    BossDamage bossHealth = enemiesToDamage[i].GetComponent<BossDamage>();
                     Debug.Log($"Damaging enemy: {enemiesToDamage[i].name}");
 
                 }
