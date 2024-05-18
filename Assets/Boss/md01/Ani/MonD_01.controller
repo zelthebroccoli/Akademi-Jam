@@ -186,7 +186,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4296621697594179185}
-    m_Position: {x: 730, y: -180, z: 0}
+    m_Position: {x: 610, y: -150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5103852829753218206}
     m_Position: {x: 300, y: -140, z: 0}
@@ -324,7 +324,7 @@ MonoBehaviour:
   minTime: 1.5
   maxTime: 1.5
   attackRange: 3
-  player: {fileID: 0}
+  playerPos: {fileID: 0}
   speed: 7
 --- !u!1101 &4735763192336962774
 AnimatorStateTransition:
