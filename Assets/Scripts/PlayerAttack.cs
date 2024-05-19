@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private float timeBtwAttack;
-    public float startTimeBtwAttack;
+    public float startTimeBtwAttack=0f;
 
     public Transform attackPos;
     public LayerMask whatIsEnemies;
@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
                 for(int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     BossDamage bossHealth = enemiesToDamage[i].GetComponent<BossDamage>();
+
                     Debug.Log($"Damaging enemy: {enemiesToDamage[i].name}");
 
                 }

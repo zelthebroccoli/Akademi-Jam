@@ -5,16 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float movePower = 10f;
-    public float jumpPower = 20f; // Set Gravity Scale in Rigidbody2D Component to 5
+    public float jumpPower = 25f; 
 
     private Rigidbody2D rb;
     private Animator anim;
     private int direction = 1;
     bool isJumping = false;
     private bool alive = true;
-    public int maxHealth = 100;
+    public int maxHealth = 500;
     public int currentHealth = 0;
-
+    
     public TimeCapsuleManager cm;
 
 
@@ -35,15 +35,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            anim.SetTrigger("hurt");
-            if (direction == 1)
-            {
-                rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-            }
-            else
-            {
-                rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-            }
+
+            Hurt();
         }
         void Hurt()
         {

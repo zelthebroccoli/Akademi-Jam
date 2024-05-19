@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class idleBehavior : StateMachineBehaviour
@@ -11,6 +12,7 @@ public class idleBehavior : StateMachineBehaviour
     public Transform playerPos;
     public float speed;
     Rigidbody2D boss;
+    Rigidbody2D enemy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,6 +20,7 @@ public class idleBehavior : StateMachineBehaviour
         timer = Random.Range(minTime, maxTime);
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         boss= GameObject.FindGameObjectWithTag ("Boss").GetComponent <Rigidbody2D>();
+        enemy=GameObject.FindGameObjectWithTag ("Enemy").GetComponent<Rigidbody2D>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -34,6 +37,7 @@ public class idleBehavior : StateMachineBehaviour
         Vector2 target = new Vector2(playerPos.position.x, playerPos.position.y);
         animator.transform.position = Vector2.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
         animator.GetComponent<Boss>().LookAtPlayer();
+        animator.GetComponent<EnemyAI>().PlayerInSight();
         if (Vector2.Distance(playerPos.position, boss.position )<= attackRange)
         {
             animator.SetTrigger("attack");

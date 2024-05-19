@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 4105362945620786471}
   - component: {fileID: 4105362945620786468}
   - component: {fileID: 5276404830671671798}
-  - component: {fileID: 6032366485382375034}
-  - component: {fileID: 8814655205038461618}
   - component: {fileID: 7511393222125304360}
   m_Layer: 6
   m_Name: Wizard
@@ -86,41 +84,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6032366485382375034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105362945620786469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b951c6ec9f1db2b4bb8a37d591161369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movePower: 10
-  jumpPower: 15
-  maxHealth: 100
-  currentHealth: 0
---- !u!114 &8814655205038461618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105362945620786469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08b29cf2122ee09469ada1cf4f806629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTimeBtwAttack: 0.3
-  attackPos: {fileID: 324229898543362697}
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 128
-  attackRange: 5.95
-  damage: 10
 --- !u!70 &7511393222125304360
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1222,11 +1185,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4659465226787548234}
   m_SourcePrefab: {fileID: -3791651542596152443, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
---- !u!4 &324229898543362697 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4361393770604789201, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
-  m_PrefabInstance: {fileID: 4105362946132217688}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4705613635786667328 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -453562347444798952, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1, type: 3}
