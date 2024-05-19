@@ -11,7 +11,9 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask whatIsEnemies;
     public float attackRange;
     public int damage;
-    private void Update()
+    public int bossDamage = 20;
+    public int enemyDamage = 10;
+    public void Update()
     {
         if (timeBtwAttack <= 0)
         {
@@ -20,9 +22,17 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for(int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    BossDamage bossHealth = enemiesToDamage[i].GetComponent<BossDamage>();
+                    Health bossHealth = enemiesToDamage[i].GetComponent<Health>();
+                    if(bossHealth != null )
+                    {
+                        bossHealth.TakeDamage(damage);
+                    }
 
-                    Debug.Log($"Damaging enemy: {enemiesToDamage[i].name}");
+                    Health enemyHealth = enemiesToDamage[i].GetComponent<Health>();
+                    if (enemyHealth!=null)
+                    {
+                        enemyHealth.TakeDamage(damage);
+                    }
 
                 }
             }

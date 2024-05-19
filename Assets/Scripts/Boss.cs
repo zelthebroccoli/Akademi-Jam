@@ -6,10 +6,18 @@ public class Boss : MonoBehaviour
 {
     public Transform player;
     Rigidbody2D boss;
-  
+    public EnemyAI enemyAI;
     public bool isFlipped = false;
 
+    public void Start()
+    {
+      enemyAI=GetComponent<EnemyAI>();    
+    }
+    public void Update()
+    {
+        LookAtPlayer();
 
+    }
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;

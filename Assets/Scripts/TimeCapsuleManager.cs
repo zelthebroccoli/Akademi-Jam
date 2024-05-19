@@ -11,12 +11,32 @@ public class TimeCapsuleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateCapsuleText();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        capsuleText.text = ":" + capsuleCount.ToString();
+        
     }
+
+    public void TakeDamage(int damage)
+    {
+        capsuleCount -= damage;
+        if (capsuleCount < 0)
+        {
+            capsuleCount = 0;
+        }
+        UpdateCapsuleText();
+        Debug.Log("capsule azaldý");
+    }
+
+    private void UpdateCapsuleText()
+    {
+        capsuleText.text = ":" + capsuleCount.ToString();
+        Debug.Log("capsule azaldý");
+    }
+   
 }
+

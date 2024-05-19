@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float attackCoolDown;
-    [SerializeField] private int damage;
+    [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
+    [SerializeField] private int damage;
     [SerializeField] private float colliderDistance;
     [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private LayerMask player;
+    [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
-    public Animator anim;
+
+    private Animator anim;
+    private PlayerHealth playerHealth;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -22,42 +24,66 @@ public class EnemyAI : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        //playerý gorunce saldir
+        //Attack only when player in sight?
         if (PlayerInSight())
         {
-            if (cooldownTimer >= attackCoolDown)
+            if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("attack");
             }
-            RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-       new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y), 0, Vector2.left, 0, player);
-            PlayerController Wizard = hit.transform.GetComponent<PlayerController>();
-            if (Wizard != null)
-            {
-                Wizard.TakeDamage(damage);
-            }
-
-
-
         }
-
     }
+    
     public bool PlayerInSight()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-            new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y), 0, Vector2.left, 0, player);
+        Vector2 boxCenter = (Vector2)boxCollider.bounds.center + (Vector2.right * range * transform.localScale.x * colliderDistance);
+        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y);
+        Collider2D hit = Physics2D.OverlapBox(boxCenter, boxSize, 0, playerLayer);
 
+        Debug.Log("Box Center: " + boxCenter);
+        Debug.Log("Box Size: " + boxSize);
 
-        return hit.collider != null;
+        if (hit != null)
+        {
+            playerHealth = hit.GetComponent<PlayerHealth>();
+            Debug.Log("Player detected");
+        }
+        else
+        {
+            Debug.Log("Player not detected");
+        }
+
+        return hit != null;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-            new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y));
-
+        Gizmos.color = Color.red;
+        Vector2 boxCenter = (Vector2)boxCollider.bounds.center + (Vector2.right * range * transform.localScale.x * colliderDistance);
+        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y);
+        Gizmos.DrawWireCube(boxCenter, boxSize);
+    }
+    public void ApplyDamage()
+    {
+        if (playerHealth != null)
+        {
+            Debug.Log("Applying damage to player");
+            playerHealth.TakeDamage(damage, transform.position.x > playerHealth.transform.position.x ? 1 : -1);
+        }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+            if (player != null)
+            {
+                int knockbackDirection = transform.position.x > player.transform.position.x ? 1 : -1;
+                player.TakeDamage(damage, knockbackDirection);
+            }
+        }
+    }
 }
+

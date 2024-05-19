@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     private int direction = 1;
     bool isJumping = false;
     private bool alive = true;
-    public int maxHealth = 500;
-    public int currentHealth = 0;
     
     public TimeCapsuleManager cm;
 
@@ -23,39 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        currentHealth = maxHealth;
-    }
-
-    public void TakeDamage(int damageAmount)
-    {
-        currentHealth -= damageAmount;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-
-            Hurt();
-        }
-        void Hurt()
-        {
-            anim.SetTrigger("hurt");
-            if (direction == 1)
-                rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-            else
-                rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-
-        }
-
-        void Die()
-        {
-
-            anim.SetTrigger("die");
-            alive = false;
-
-        }
-
+        
     }
 
 
@@ -139,7 +105,6 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("attack");
         }
 
-
     }
 
 
@@ -162,6 +127,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             cm.capsuleCount++;
         }
+        
     }
 }
 

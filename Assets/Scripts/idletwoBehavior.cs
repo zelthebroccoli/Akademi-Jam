@@ -16,8 +16,25 @@ public class idletwoBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = Random.Range(minTime, maxTime);
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody2D>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerPos = player.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found! Make sure the player GameObject is tagged correctly.");
+        }
+
+        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        if (enemyObject != null)
+        {
+            enemy = enemyObject.GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            Debug.LogError("Enemy not found! Make sure the enemy GameObject is tagged correctly.");
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -31,12 +48,20 @@ public class idletwoBehavior : StateMachineBehaviour
         {
             timer -= Time.deltaTime;
         }
-        Vector2 target = new Vector2(playerPos.position.x, playerPos.position.y);
-        animator.transform.position = Vector2.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
-        animator.GetComponent<EnemyAI>().PlayerInSight();
-        if (Vector2.Distance(playerPos.position, enemy.position) <= attackRange)
+
+        if (playerPos != null && enemy != null)
         {
-            animator.SetTrigger("attack");
+            Vector2 target = new Vector2(playerPos.position.x, playerPos.position.y);
+            animator.transform.position = Vector2.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
+
+            if (Vector2.Distance(playerPos.position, enemy.position) <= attackRange)
+            {
+                animator.SetTrigger("attack");
+            }
+        }
+        else
+        {
+            Debug.LogError("playerPos or enemy is null!");
         }
     }
 
