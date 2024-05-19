@@ -13,6 +13,6 @@ public class TimeCapsule : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(Vector3.up, 60f * Time.deltaTime, Space.World);
     }
 }
