@@ -16,8 +16,8 @@ public class PlayerHealth : MonoBehaviour
     {
         health = maxHealth;
         anim = GetComponent<Animator>();
-        healthBar.maxValue = maxHealth;
         healthBar.value = health;
+        health = maxHealth;
     }
 
     public void RecievedDamage(int damage)

@@ -12,12 +12,12 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private Transform enemy;
 
     [Header("Movement parameters")]
-    [SerializeField] private float speed;
+    [SerializeField] private float speed=2;
     private Vector3 initScale;
     private bool movingLeft;
 
     [Header("Idle Behaviour")]
-    [SerializeField] private float idleDuration;
+    [SerializeField] private float idleDuration=1;
     private float idleTimer;
 
     [Header("Enemy Animator")]
@@ -29,11 +29,20 @@ public class EnemyPatrol : MonoBehaviour
     }
     private void OnDisable()
     {
-        anim.SetBool("moving", false);
+        if (anim != null)
+        {
+            anim.SetBool("moving", false);
+        }
+        
     }
 
     private void Update()
     {
+        if (leftEdge == null || rightEdge == null || enemy == null)
+        {
+            // Handle missing references
+            return;
+        }
         if (movingLeft)
         {
             if (enemy.position.x >= leftEdge.position.x)
@@ -72,4 +81,7 @@ public class EnemyPatrol : MonoBehaviour
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
             enemy.position.y, enemy.position.z);
     }
+    
+
+
 }
