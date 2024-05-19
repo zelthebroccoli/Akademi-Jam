@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "karl\u0131tasyol_0": 3471175658399730015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kumluyol_0: -8631290487373008602
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
