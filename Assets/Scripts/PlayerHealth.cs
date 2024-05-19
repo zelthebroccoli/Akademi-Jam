@@ -10,23 +10,20 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth=500;
     public Slider healthBar;
     private int direction = 1;
-    private Animator anim;
+    public Animator anim;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        health=maxHealth; 
-        anim= GetComponent<Animator>();
+        health = maxHealth;
+        anim = GetComponent<Animator>();
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
     }
 
-
-    public void TakeDamage(int amount, int knockbackDirection)
+    public void RecievedDamage(int damage)
     {
-        health -= amount;
+        health -= damage;
         healthBar.value = health;
-
-        direction = knockbackDirection;
 
         if (health <= 0)
         {
@@ -37,21 +34,18 @@ public class PlayerHealth : MonoBehaviour
             Hurt();
         }
     }
+
     public void Hurt()
     {
-        anim.SetTrigger("hurt");
+        anim.SetBool("hurt", true);
         float knockbackDistance = 1f; // Adjust this value to control knockback distance
         Vector3 knockbackDirection = new Vector3(direction == 1 ? -knockbackDistance : knockbackDistance, 0.5f, 0); // Adjust the Y component for upward knockback
         transform.position += knockbackDirection;
     }
 
-
     public void Die()
     {
-        anim.SetTrigger("die");
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        anim.SetBool("die", true);
+        Destroy(gameObject);
     }
 }

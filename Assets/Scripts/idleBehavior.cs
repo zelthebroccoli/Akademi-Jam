@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class idleBehavior : StateMachineBehaviour
@@ -36,7 +33,7 @@ public class idleBehavior : StateMachineBehaviour
         }
         Vector2 target = new Vector2(playerPos.position.x, playerPos.position.y);
         animator.transform.position = Vector2.MoveTowards(animator.transform.position, target, speed * Time.deltaTime);
-        animator.GetComponent<Boss>().LookAtPlayer();
+        animator.GetComponent<BossAI>().PlayerInSight();
         
         if (Vector2.Distance(playerPos.position, boss.position )<= attackRange)
         {

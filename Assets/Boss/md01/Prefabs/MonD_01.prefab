@@ -15500,9 +15500,7 @@ GameObject:
   - component: {fileID: 1873030402443433276}
   - component: {fileID: 152957601734482752}
   - component: {fileID: 5554163564346281629}
-  - component: {fileID: 2721516016373657612}
   - component: {fileID: 2438098195872160805}
-  - component: {fileID: 4548371893707238236}
   - component: {fileID: 184131810391186011}
   m_Layer: 7
   m_Name: MonD_01
@@ -15578,21 +15576,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &2721516016373657612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7041806645088666966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccfbce9048961154686b370b206d7253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemyAI: {fileID: 4548371893707238236}
-  isFlipped: 0
 --- !u!61 &2438098195872160805
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15627,7 +15610,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.6410847, y: 4.673086}
+  m_Offset: {x: -2.2312796, y: 4.290634}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -15637,30 +15620,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.4466715, y: 6.985296}
+  m_Size: {x: 2.2662816, y: 6.220392}
   m_EdgeRadius: 0
---- !u!114 &4548371893707238236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7041806645088666966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e3eb6829de9034982d1738bd4d4335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCoolDown: 0
-  damage: 20
-  range: -0.21
-  colliderDistance: 5.82
-  boxCollider: {fileID: 2438098195872160805}
-  player:
-    serializedVersion: 2
-    m_Bits: 64
-  cooldownTimer: Infinity
-  anim: {fileID: 152957601734482752}
 --- !u!114 &184131810391186011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15674,7 +15635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 40
-  currentHealth: 500
   bossHealth: 300
   anim: {fileID: 152957601734482752}
 --- !u!1 &7731894900274485430

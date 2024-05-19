@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7422166293733888384}
   - component: {fileID: 3358341644253579063}
   - component: {fileID: 5036423875590971193}
-  - component: {fileID: 4481362426169142943}
-  - component: {fileID: 8652591163814502302}
+  - component: {fileID: 1224456893539794137}
+  - component: {fileID: 4971307755926577925}
   m_Layer: 7
   m_Name: YesilUzayli
   m_TagString: Enemy
@@ -152,7 +152,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0033890307, y: -0.018074743}
+  m_Offset: {x: -0.00044996664, y: -0.018074743}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -162,7 +162,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.09573564, y: 0.21836911}
+  m_Size: {x: 0.21264526, y: 0.21836911}
   m_EdgeRadius: 0
 --- !u!95 &5036423875590971193
 Animator:
@@ -186,7 +186,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4481362426169142943
+--- !u!114 &1224456893539794137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,17 +198,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e3eb6829de9034982d1738bd4d4335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCoolDown: 1
-  damage: 4
-  range: 0.2
+  attackCooldown: 2
+  range: 1.25
+  damage: 20
   colliderDistance: 0
   boxCollider: {fileID: 3358341644253579063}
-  player:
+  playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  anim: {fileID: 5036423875590971193}
-  enemyHealth: 20
---- !u!114 &8652591163814502302
+--- !u!114 &4971307755926577925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,5 +219,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 40
-  maxHealth: 500
-  currentHealth: 500
+  bossHealth: 300
+  anim: {fileID: 5036423875590971193}

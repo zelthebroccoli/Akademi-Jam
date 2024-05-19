@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class BossAI : MonoBehaviour
 {
     [Header("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
-    [SerializeField] private int damage=20;
+    [SerializeField] private int damage = 30;
 
     [Header("Collider Parameters")]
     [SerializeField] private float colliderDistance;
@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
             if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
-                anim.SetTrigger("alienattack");
+                anim.SetTrigger("attack");
             }
         }
 
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
             enemyPatrol.enabled = !PlayerInSight();
     }
 
-    private bool PlayerInSight()
+    public bool PlayerInSight()
     {
         RaycastHit2D hit =
             Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,

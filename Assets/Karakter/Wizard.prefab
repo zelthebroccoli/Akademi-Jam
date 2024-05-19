@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7511393222125304360}
   - component: {fileID: 6614772401097358723}
   - component: {fileID: 1019380559207110314}
-  - component: {fileID: 1025148722670536805}
+  - component: {fileID: 8298227136325561821}
   m_Layer: 6
   m_Name: Wizard
   m_TagString: Player
@@ -160,7 +160,7 @@ MonoBehaviour:
   damage: 10
   bossDamage: 20
   enemyDamage: 10
---- !u!114 &1025148722670536805
+--- !u!114 &8298227136325561821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 500
   healthBar: {fileID: 0}
+  anim: {fileID: 4105362945620786468}
 --- !u!1001 &4105362946132217688
 PrefabInstance:
   m_ObjectHideFlags: 0
