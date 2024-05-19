@@ -1123,6 +1123,10 @@ PrefabInstance:
       propertyPath: cm
       value: 
       objectReference: {fileID: 866618830}
+    - target: {fileID: 8298227136325561821, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 79805097}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
