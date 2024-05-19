@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - TimeCapsuleKeys
   - Enemy
+  - Collectibile
   layers:
   - Default
   - TransparentFX
