@@ -9,6 +9,7 @@ TagManager:
   - TimeCapsuleKeys
   - Enemy
   - Collectibile
+  - CapsuleCountText
   layers:
   - Default
   - TransparentFX

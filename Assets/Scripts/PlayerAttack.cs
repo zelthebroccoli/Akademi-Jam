@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private float timeBtwAttack;
-    public float startTimeBtwAttack=0f;
+    private float startTimeBtwAttack=0f;
 
     public Transform attackPos;
     public LayerMask whatIsEnemies;
-    public float attackRange;
-    public int damage;
-    public int bossDamage = 20;
-    public int enemyDamage = 10;
+    private float attackRange=4f;
+    private int bossDamage = 20;
+    private int enemyDamage = 10;
     public void Update()
     {
         if (timeBtwAttack <= 0)

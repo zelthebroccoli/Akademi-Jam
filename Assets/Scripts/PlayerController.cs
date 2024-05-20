@@ -5,32 +5,25 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float movePower = 10f;
-    public float jumpPower = 25f; 
+    public float jumpPower = 25f;
 
     private Rigidbody2D rb;
     private Animator anim;
     private int direction = 1;
     bool isJumping = false;
     private bool alive = true;
-    
-    public TimeCapsuleManager cm;
-  
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        
     }
-
 
     private void Update()
     {
-
         if (alive)
         {
-
             Run();
             Jump();
             Attack();
@@ -44,7 +37,6 @@ public class PlayerController : MonoBehaviour
         {
             Restart();
         }
-
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -54,8 +46,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJump", false);
             isJumping = false;
         }
-      
-
     }
 
     void Run()
@@ -98,36 +88,29 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJump", false);
         }
     }
+
     public void Attack()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             anim.SetTrigger("attack");
         }
-
     }
-
-
-
-
 
     void Restart()
     {
         anim.SetTrigger("idle");
         anim.SetBool("isJump", false);
         alive = true;
-
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("TimeCapsuleKeys")) 
+        if (other.gameObject.CompareTag("TimeCapsuleKeys"))
         {
             Destroy(other.gameObject);
-            cm.capsuleCount++;
+            
         }
-        
     }
 }
 
