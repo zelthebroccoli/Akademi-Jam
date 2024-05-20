@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossAI : MonoBehaviour
 {
@@ -21,11 +22,28 @@ public class BossAI : MonoBehaviour
     private Animator anim;
     private PlayerHealth playerHealth;
     private EnemyPatrol enemyPatrol;
+    private static int totalEnemies;
+    private static int enemiesRemaining;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        if (totalEnemies == 0)
+            totalEnemies++;
+        enemiesRemaining++;
+    }
+
+    private void OnDestroy()
+    {
+        // Decrement enemiesRemaining when an enemy is destroyed
+        enemiesRemaining--;
+
+        // Check if all enemies are killed
+        if (enemiesRemaining <= 0)
+        {
+            LoadNextScene();
+        }
     }
 
     private void Update()
@@ -69,6 +87,12 @@ public class BossAI : MonoBehaviour
     {
         if (other.CompareTag("Player")&&PlayerInSight())
             playerHealth.RecievedDamage(damage);
+    }
+
+    private void LoadNextScene()
+    {
+        // Load the next scene
+        SceneManager.LoadScene(0);
     }
 }
 
