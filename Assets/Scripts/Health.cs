@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int enemyHealth = 40;
-    private int direction = 1;
+    private int direction = 0;
     public int bossHealth = 300;
 
     public Animator anim;
@@ -50,23 +50,28 @@ public class Health : MonoBehaviour
     public void Hurt()
     {
         anim.SetTrigger("hurt");
-        float knockbackDistance = 1f; // Adjust this value to control knockback distance
-        Vector3 knockbackDirection = new Vector3(direction == 1 ? -knockbackDistance : knockbackDistance, 0.5f, 0); // Adjust the Y component for upward knockback
 
-        transform.position += knockbackDirection;
+        // Horizontal knockback
+        float knockbackDistanceX = 0f; // Adjust this value to control horizontal knockback distance
+        Vector3 knockbackDirectionX = new Vector3(direction == 0 ? -knockbackDistanceX : knockbackDistanceX, 0, 0);
+        transform.position += knockbackDirectionX;
 
+        // Vertical knockback
+        float knockbackDistanceY = 0f; // Adjust this value to control vertical knockback distance
+        Vector3 knockbackDirectionY = new Vector3(0, knockbackDistanceY, 0);
+        transform.position += knockbackDirectionY;
     }
 
     public void Die()
     {
         anim.SetTrigger("die");
-        if(bossHealth <=0)
+        if (gameObject.CompareTag("Boss"))
         {
-            Destroy(GameObject.FindGameObjectWithTag ("Boss"));
+            Destroy(gameObject); // Destroy the current boss GameObject
         }
-        else if (enemyHealth <=0)
+        else if (gameObject.CompareTag("Enemy"))
         {
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            Destroy(gameObject); // Destroy the current enemy GameObject
         }
     }
 }

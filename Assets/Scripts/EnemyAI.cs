@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
     [Header("Attack Parameters")]
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float range;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float range=1.25f;
     [SerializeField] private int damage=20;
 
     [Header("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
+    [SerializeField] private float colliderDistance=0f;
     [SerializeField] private BoxCollider2D boxCollider;
 
     [Header("Player Layer")]
@@ -22,10 +23,28 @@ public class EnemyAI : MonoBehaviour
     private PlayerHealth playerHealth;
     private EnemyPatrol enemyPatrol;
 
+    private static int totalEnemies;
+    private static int enemiesRemaining;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        if (totalEnemies == 0)
+            totalEnemies++;
+        enemiesRemaining++;
+    }
+
+    private void OnDestroy()
+    {
+        // Decrement enemiesRemaining when an enemy is destroyed
+        enemiesRemaining--;
+
+        // Check if all enemies are killed
+        if (enemiesRemaining <= 0)
+        {
+            LoadNextScene();
+        }
     }
 
     private void Update()
@@ -69,6 +88,12 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.CompareTag("Player")&&PlayerInSight())
             playerHealth.RecievedDamage(damage);
+    }
+
+    private void LoadNextScene()
+    {
+        // Load the next scene
+        SceneManager.LoadScene(1);
     }
 }
 

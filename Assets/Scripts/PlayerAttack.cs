@@ -22,16 +22,18 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for(int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    Health bossHealth = enemiesToDamage[i].GetComponent<Health>();
-                    if(bossHealth != null )
-                    {
-                        bossHealth.TakeDamage(damage);
-                    }
-
                     Health enemyHealth = enemiesToDamage[i].GetComponent<Health>();
-                    if (enemyHealth!=null)
+                    if (enemyHealth != null)
                     {
-                        enemyHealth.TakeDamage(damage);
+                        // Check if the enemy is a boss or a regular enemy
+                        if (enemiesToDamage[i].CompareTag("Boss"))
+                        {
+                            enemyHealth.TakeDamage(bossDamage);
+                        }
+                        else
+                        {
+                            enemyHealth.TakeDamage(enemyDamage);
+                        }
                     }
 
                 }
