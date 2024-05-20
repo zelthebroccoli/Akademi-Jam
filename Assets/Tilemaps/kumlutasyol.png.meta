@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kumlutasyol_0: 3353715723226854511
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
