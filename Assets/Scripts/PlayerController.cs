@@ -104,14 +104,6 @@ public class PlayerController : MonoBehaviour
         alive = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("TimeCapsuleKeys"))
-        {
-            Destroy(other.gameObject);
-            
-        }
-    }
 }
 
 

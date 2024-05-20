@@ -6,42 +6,25 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public static PlayerHealth instance; // Singleton instance
-
     public int maxHealth = 500;
-    public int currentHealth;
+    public int currenthealth;
     private int direction = 1;
     public HealthBar healthBar;
     public Animator anim;
-
-    private void Awake()
-    {
-        // Singleton pattern implementation
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Keep the player object between scene loads
-        }
-        else
-        {
-            Destroy(gameObject); // If another instance exists, destroy this one
-        }
-    }
-
     // Start is called before the first frame update
     public void Start()
     {
-        currentHealth = maxHealth;
+        currenthealth = maxHealth;
         anim = GetComponent<Animator>();
         healthBar.SetMaxHealth(maxHealth);
     }
 
     public void RecievedDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        currenthealth -= damage;
+        healthBar.SetHealth(currenthealth);
 
-        if (currentHealth <= 0)
+        if (currenthealth <= 0)
         {
             Die();
         }
@@ -63,5 +46,6 @@ public class PlayerHealth : MonoBehaviour
     {
         anim.SetBool("die", true);
         Destroy(gameObject);
+
     }
 }

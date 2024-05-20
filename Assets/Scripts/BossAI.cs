@@ -92,7 +92,7 @@ public class BossAI : MonoBehaviour
     private void LoadNextScene()
     {
         // Load the next scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 }
 
