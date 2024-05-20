@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-
     public void TakeDamage(int damage)
     {
         if (gameObject.CompareTag("Boss"))
@@ -30,7 +29,6 @@ public class Health : MonoBehaviour
                 Hurt();
             }
         }
-
         else if (gameObject.CompareTag("Enemy"))
         {
             enemyHealth -= damage;
@@ -43,10 +41,8 @@ public class Health : MonoBehaviour
                 Hurt();
             }
         }
-
-       
-
     }
+
     public void Hurt()
     {
         anim.SetTrigger("hurt");
@@ -73,6 +69,16 @@ public class Health : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the current enemy GameObject
         }
+
+        // Reset health on death
+        if (gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject); // Destroy the current boss GameObject
+        }
+        else if (gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject); // Destroy the current enemy GameObject
+        }
+
     }
 }
-

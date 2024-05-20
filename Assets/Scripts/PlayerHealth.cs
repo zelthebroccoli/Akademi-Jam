@@ -1,31 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    
-    public int health;
-    public int maxHealth=500;
-    public Slider healthBar;
+    public static PlayerHealth instance; // Singleton instance
+
+    public int maxHealth = 500;
+    public int currentHealth;
     private int direction = 1;
+    public HealthBar healthBar;
     public Animator anim;
+
+    private void Awake()
+    {
+        // Singleton pattern implementation
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Keep the player object between scene loads
+        }
+        else
+        {
+            Destroy(gameObject); // If another instance exists, destroy this one
+        }
+    }
+
     // Start is called before the first frame update
     public void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
         anim = GetComponent<Animator>();
-        healthBar.value = health;
-        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public void RecievedDamage(int damage)
     {
-        health -= damage;
-        healthBar.value = health;
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

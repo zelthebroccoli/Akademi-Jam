@@ -82,6 +82,6 @@ public class DialogueSystem : MonoBehaviour
         dialogueCanvas.enabled = false;
         dialogueStarted = false;
         Debug.Log("Diyalog Bitti");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

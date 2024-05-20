@@ -8,21 +8,18 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool triggered = false;
 
-    public PlayerController Player;
-
-    private Animator anim;
+    private PlayerController Wizard;
 
     public void Start()
     {
-        Player = GetComponent<PlayerController>();
-        anim = GetComponent<Animator>();
+        Wizard = GetComponent<PlayerController>();
         triggered = false;
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !triggered)
         {
-            anim.SetTrigger("idle");
+
             triggered = true;
             dialogue.StartDialogue();
             Debug.Log("diyalog basladi");
