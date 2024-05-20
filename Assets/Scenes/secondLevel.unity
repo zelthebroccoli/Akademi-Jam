@@ -248,6 +248,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1216243951637299593, guid: b6ff8087d51582948909d786d8e720e1, type: 3}
   m_PrefabInstance: {fileID: 181146092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &377800136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4590258094298283949, guid: b04d0899d89eace4a9551bf1c9459709, type: 3}
+  m_PrefabInstance: {fileID: 872141412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &380005199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 568128842529339119, guid: 75682d5837bb93148abbe372e0e6e95f, type: 3}
@@ -306,6 +317,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1344743454471846032, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
+      propertyPath: _text
+      value: 
+      objectReference: {fileID: 377800136}
     - target: {fileID: 4105362945620786469, guid: ebea5f8b8163f9a4ab9d9a1b45444e28, type: 3}
       propertyPath: m_Name
       value: Wizard
